@@ -1,24 +1,47 @@
-import { useState } from "react";
-import { selectTotalCartCost, useCart } from "../../services/cart"
+import clsx from "clsx";
+
+import { useCheckout } from "./hooks/useCheckout";
 
 export function CheckoutPage() {
-    const [user, setUser] = useState({name: '', email: ''});
-    const totalCartCost = useCart(selectTotalCartCost);
+    const {
+        validators, actions,
+        user, dirty, totalCartCost
+    } = useCheckout();
 
     return (
-        <div className="page-sm">
+        <div className="max-w-sm mx-auto">
             <h1 className="title">CHECKOUT</h1>
 
             <div className="text-xl my-3 border-b">€ {totalCartCost}</div>
 
-            <form action="" className="flex flex-col gap-3">
+            <form action="" className="flex flex-col gap-3" onSubmit={actions.sendOrder}>
                 Il tuo nome:
-                <input type="text" placeholder="Inserisci nome" value={user.name}/>
+                <input 
+                    type="text" 
+                    placeholder="Inserisci nome" 
+                    name="name" 
+                    value={user.name} 
+                    onChange={actions.changeHandler}
+                    className={clsx({ "error": !validators.isNameValid && dirty })}
+                />  
 
                 La tua e-mail:
-                <input type="email" placeholder="Inserisci email" value={user.email}/>
+                <input 
+                    type="email" 
+                    placeholder="Inserisci email" 
+                    name="email" 
+                    value={user.email} 
+                    onChange={actions.changeHandler}
+                    className={clsx({ "error": !validators.isEmailValid && dirty})}
+                />
 
-                <button className="btn primary">Conferma ordine!</button>
+                <button 
+                    type="submit" 
+                    className={clsx ("btn", {primary: !validators.isValid, success: validators.isValid})} 
+                    disabled={!validators.isValid}
+                >
+                    Conferma ordine!
+                </button>
 
             </form>
         </div>

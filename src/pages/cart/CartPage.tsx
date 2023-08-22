@@ -4,7 +4,7 @@ import {
     selectCartList,
     selectDecreaseQuantity,
     selectIncreaseQuantity,
-    selectTotalCartCost,
+    selectTotalCartCost,  
     useCart } 
 from "../../services/cart"
 
