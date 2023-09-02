@@ -1,7 +1,12 @@
-export function ServerError () {
+export interface ServerErrorProps {
+    message?: string;
+}
+
+
+export function ServerError(props: ServerErrorProps) {
     return (
         <div className="bg-red-800 text-white rounded-xl p-3 my-6">
-            Si è verificato un errore del server!
+            {props.message || "Si è verificato un errore del server!"}  
         </div>
     )
 }
