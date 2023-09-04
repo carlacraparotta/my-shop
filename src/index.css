@@ -42,11 +42,11 @@ input[type="email"].error {
 
 .table-auto th,
 .table-auto td {
-  @apply border-b border-b-blue-500 py-4 px-2
+  @apply border-b border-b-white py-4 px-2
 }
 
 .table-auto.hover tr:hover {
-  @apply bg-blue-500
+  @apply bg-indigo-400
 }
 
 
