@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { Product } from "../../../../model/product"
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useCloudinary } from "../../../../shared";
 
 export interface CMSProductFormProps {
     activeItem: Partial<Product> | null;
@@ -10,7 +11,7 @@ export interface CMSProductFormProps {
 }
 
 const initialState: Partial<Product>= {
-    name:"", cost: 0, description:""
+    name:"", cost: 0, description:"", tmb:"", img:""
 }
 
 export function CMSProductForm(props: CMSProductFormProps) {
@@ -18,13 +19,15 @@ export function CMSProductForm(props: CMSProductFormProps) {
     const [formData, setFormData] = useState<Partial<Product>>(initialState);
     const [dirty, setDirty] = useState(false);
 
+    const { openWidget } = useCloudinary();
+
     useEffect(() => {
         if(props.activeItem?.id)
             setFormData({...props.activeItem});
         else
             setFormData(initialState);
     }, [props.activeItem]);
-    
+
 
     function changeHandler(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void {
         const name = e.currentTarget.name;
@@ -41,11 +44,14 @@ export function CMSProductForm(props: CMSProductFormProps) {
             props.onAdd(formData);
     }
 
+    function uploadHandler(): void {
+       openWidget().then(res => setFormData(s => ({ ...s, ...res})))
+    }
+
     const isNameValid = formData.name?.length;
     const isCostValid = formData.cost! > 0;
     const isDescValid = formData.description?.length;
     const isValid = isNameValid && isCostValid && isDescValid;
-
 
     return (
         <div className={clsx(
@@ -106,9 +112,13 @@ export function CMSProductForm(props: CMSProductFormProps) {
                         value={formData.description}
                         onChange={changeHandler}
                     />
+
+                    <button 
+                        className="btn primary" type="button" onClick={uploadHandler}
+                    >
+                        Carica immagine
+                    </button>
                 </div>
-
-
 
             </form>
             
