@@ -2,13 +2,13 @@ import { CartItem } from "./cart-item";
 
 export type OrderStatus = 'pending' | 'done';
 
-export interface UserForm {
+export interface OrderUser {
     name: string;
     email: string;
 }
 
 export interface OrderForm {
-    user: UserForm;
+    user: OrderUser;
     order: CartItem[];
     status: OrderStatus;
     total: number; 

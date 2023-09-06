@@ -4,16 +4,21 @@
 
 html, body {
     font-family: 'Raleway', sans-serif;
-    @apply bg-gradient-to-tl from-red-900 to-indigo-400 text-white bg-fixed h-full;
+    @apply bg-gradient-to-tl from-pink-500 to-pink-300 text-white bg-fixed h-full;
 }
 
 .title {
     @apply font-extrabold my-3 text-[2rem] text-center
-           2xl:text-[18rem] 2xl:fixed 2xl:bottom-0 2xl:z-0 2xl:rotate-[270deg] 2xl:w-96 2xl:-left-12 2xl:opacity-30 2xl:pointer-events-none
+           2xl:text-[16rem] 2xl:fixed 2xl:bottom-0 2xl:z-0 2xl:rotate-[270deg] 2xl:w-96 2xl:-left-12 2xl:opacity-30 2xl:pointer-events-none
+}
+
+.title-checkout {
+    @apply font-extrabold my-3 text-[2rem] text-center
+           2xl:text-[16rem] 2xl:fixed 2xl:bottom-0 2xl:z-0 2xl:w-96 2xl:left-48 2xl:opacity-30 2xl:pointer-events-none
 }
 
 .page {
-    @apply max-w-screen-lg mx-auto pt-24 px-3
+    @apply max-w-screen-lg mx-auto pt-32 px-3
 }
 
 .page-sm {
@@ -69,7 +74,7 @@ input[type="email"].error {
 }
 
 .btn.accent {
-    @apply bg-pink-500 hover:bg-pink-600 text-white
+    @apply bg-pink-400 hover:bg-pink-600 text-white
 }
 
 .btn.success {

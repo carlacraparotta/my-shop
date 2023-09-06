@@ -1,12 +1,14 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../../../assets/laptop.png";
+
+import logo from "../../../assets/carla_shop_logo.png";
+
 import { CartPanel } from "./CartPanel";
 import { selectCartIsEmpty, selectTotalCartItems, useCart, useCartPanel } from "../../../services/cart";
-import { selectAuthIsLogged, selectAuthLogout, useAuth } from "../../../services/auth";
+import { selectAuthLogout, useAuth } from "../../../services/auth";
 import { IfLogged } from "../..";
 
 const isActive = (obj: {isActive: boolean}) =>
-  obj.isActive ? 'text-xl text-sky-400 font-bold' : 'text-xl text-white';
+  obj.isActive ? 'text-3xl text-pink-600 font-bold' : 'text-3xl text-white font-bold';
 
 export function NavBar() {
 
@@ -25,11 +27,11 @@ export function NavBar() {
 
     return (
         <div className="fixed top-0 left-0 right-0 shadow-2xl z-10">
-            <div className="bg-indigo-900 flex justify-between items-center h-20 text-white p-3">
+            <div className="bg-pink-200 flex justify-between items-center h-24 text-white p-3">
                 
                 {/* Logo */}
                 <div className="flex items-center gap-3">
-                    <img src={logo} alt="my logo" className="w-16"/>
+                    <img src={logo} alt="my logo" className="w-24"/>
                     <NavLink to="shop" className={isActive}>Shop</NavLink>
                 </div>
 

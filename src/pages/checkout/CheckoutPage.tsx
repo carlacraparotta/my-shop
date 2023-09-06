@@ -10,7 +10,7 @@ export function CheckoutPage() {
 
     return (
         <div className="max-w-sm mx-auto">
-            <h1 className="title">CHECKOUT</h1>
+            <h1 className="title-checkout">CHECKOUT</h1>
 
             <div className="text-xl my-3 border-b">€ {totalCartCost}</div>
 
