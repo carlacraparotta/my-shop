@@ -18,7 +18,7 @@ html, body {
 }
 
 .page {
-    @apply max-w-screen-lg mx-auto pt-32 px-3
+    @apply max-w-screen-lg mx-auto pt-32 px-3 pb-32
 }
 
 .page-sm {
