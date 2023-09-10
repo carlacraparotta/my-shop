@@ -31,7 +31,7 @@ export function CMSProductsList(props: CMSProductsListProps) {
                             key={item.id}
                             className={clsx(
                                 "cursor-pointer",
-                                { "bg-indigo-600 pointer-events-none": item.id === props.activeItem?.id}
+                                { "bg-pink-600 pointer-events-none": item.id === props.activeItem?.id}
                             )}
                             onClick={() => props.onEditItem(item)}
                         >

@@ -5,6 +5,7 @@ import { OrderForm } from "../../../model/order-form";
 import { selectCartList, selectClearCart, selectTotalCartCost } from "../../../services/cart/cart.selectors";
 import { useCart } from "../../../services/cart";
 import { useOrdersService } from "../../../services/orders";
+import { ClientResponseError } from "pocketbase";
 
 export function useCheckout() {
     const [user, setUser] = useState({name: '', email: ''});
@@ -14,7 +15,7 @@ export function useCheckout() {
     const clearCart = useCart(selectClearCart);
     const totalCartCost = useCart(selectTotalCartCost);
     const order = useCart(selectCartList);
-    const { actions } = useOrdersService();
+    const { actions, state } = useOrdersService();
 
     const isNameValid = user.name.length;
     const isEmailValid = user.email.length;
@@ -38,10 +39,13 @@ export function useCheckout() {
             total: totalCartCost
         }
 
-        actions.addOrder(orderInfo);
-
-        clearCart();
-        navigate('/thankyou');
+        actions.addOrder(orderInfo)
+               .then(response => {
+                    if(!(response instanceof ClientResponseError)) {                   
+                        clearCart();
+                        navigate('/thankyou');
+                    }
+                });
     }
 
     return {
@@ -59,6 +63,7 @@ export function useCheckout() {
 
         user,
         dirty,
-        totalCartCost
+        totalCartCost,
+        error: state.error
     }
 }

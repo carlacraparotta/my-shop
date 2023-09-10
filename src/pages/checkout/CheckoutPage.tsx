@@ -1,16 +1,20 @@
 import clsx from "clsx";
 
 import { useCheckout } from "./hooks/useCheckout";
+import { ServerError } from "../../shared";
 
 export function CheckoutPage() {
     const {
         validators, actions,
-        user, dirty, totalCartCost
+        user, dirty, totalCartCost,
+        error
     } = useCheckout();
 
     return (
         <div className="max-w-sm mx-auto">
             <h1 className="title-checkout">CHECKOUT</h1>
+
+            { error && <ServerError message={error} />}
 
             <div className="text-xl my-3 border-b">€ {totalCartCost}</div>
 
